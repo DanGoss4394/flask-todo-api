@@ -6,3 +6,9 @@
 - [Flask Marshmallow](https://flask-marshmallow.readthedocs.io/en/latest/)
 - [Marshmallow-sqlalchemy](https://marshmallow-sqlalchemy.readthedocs.io/en/latest/)
 - [flask-cors](https://flask-cors.readthedocs.io/en/latest/)
+
+# How To Start The Server
+```
+$ pipenv shell
+$ python app.py
+```
