@@ -40,16 +40,20 @@ def hello():
     return "Hello, World!"
 
 # Create a todo
+
+
 @app.route('/api/add-todo', methods=["POST"])
 def add_todo():
     title = request.json["title"]
-    done = request.json["done"] 
+    done = request.json["done"]
     new_todo = Todo(title, done)
     db.session.add(new_todo)
     db.session.commit()
     return todo_schema.jsonify(new_todo)
 
 # Get a all todo
+
+
 @app.route('/api/get-all-todos', methods=['GET'])
 def get_all_todos():
     all_todos = Todo.query.all()
@@ -62,6 +66,8 @@ def get_all_todos():
 #     return jsonify(todos_schema.dump(all_todos))
 
 # Edit a todo doone field
+
+
 @app.route('/api/edit-done/<todo_id>', methods=["PATCH"])
 def edit_done(todo_id):
     new_done = request.json['done']
@@ -71,6 +77,15 @@ def edit_done(todo_id):
     return todo_schema.jsonify(todo)
 
 # Delete a todo
+
+
+@app.route('/api/delete-todo/<todo_id>', methods=["DELETE"])
+def delete_todo(todo_id):
+    todo = Todo.query.get(todo_id)
+    db.session.delete(todo)
+    db.session.commit()
+    return "Todo Deleted!"
+
 
 if __name__ == "__main__":
     app.debug = True
