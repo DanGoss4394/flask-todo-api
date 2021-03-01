@@ -4,9 +4,11 @@ from flask.globals import session
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS
+from flask_heroku import Heroku
 
 
 app = Flask(__name__)
+heroku = Heroku(app)
 CORS(app)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL')
